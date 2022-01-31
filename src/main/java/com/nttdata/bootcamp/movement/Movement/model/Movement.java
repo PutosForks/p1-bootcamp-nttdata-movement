@@ -7,8 +7,9 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -21,10 +22,16 @@ public class Movement {
 
     @Id
     private String id = UUID.randomUUID().toString();
-    private Date created;
+    private String detail;
     private Float amount;
+    @Field(name = "commission_amount")
     private Float commissionAmount;
+    @Field(name = "total_amount")
     private Float totalAmount;
-    private String productId;
-    private String customerId;
+    @Field(name = "benefit_id")
+    private String benefitId;
+    @Field(name = "created_at")
+    private LocalDate createdAt;
+    private String status;
+
 }

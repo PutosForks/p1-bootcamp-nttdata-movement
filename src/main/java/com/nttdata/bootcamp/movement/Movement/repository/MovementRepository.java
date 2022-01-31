@@ -7,4 +7,5 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface MovementRepository extends ReactiveMongoRepository<Movement, String> {
+  Flux<Movement> findByBenefitId(String benefitId);
 }

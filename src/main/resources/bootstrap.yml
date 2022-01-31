@@ -3,6 +3,6 @@ spring:
     name: movement-service
   cloud:
     config:
-      uri: http://localhost:8081
+      uri: http://192.168.18.33:8081
       username: root
       password: s3cr3t
