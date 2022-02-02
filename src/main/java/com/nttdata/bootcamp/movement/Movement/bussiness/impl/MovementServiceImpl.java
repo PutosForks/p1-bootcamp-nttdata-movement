@@ -75,14 +75,22 @@ public class MovementServiceImpl implements MovementService {
       return findByBenefitId(objBenefit.getId());
     });
     Mono<List<Movement>> objMovementList = movementslux.collectList();
-    Mono<MovementProductDto> objMpD =  product.flatMap(objProduct->{
+    /*Mono<MovementProductDto> objMpD =  product.flatMap(objProduct->{
         Mono<MovementProductDto> prueba =  objMovementList.map(objMovement->{
           return movementHelper.createMovementProductDto(objProduct, objMovement);
         });
       return Mono.just(prueba);
-    });
+    });*/
 
-    return Flux.from(objMpD);
+    return Flux.empty();
 
   }
+
+  /*@Override
+  public Mono<Movement> create(Movement movement) {
+    Mono<BenefitDto> benefit = webClientHelper.findBenefit(movement.getBenefitId());
+    Mono<Movement> objMovement =  benefit.flatMap(objBenefit->movementHelper.createObjectMovement(movement, objBenefit));
+    return objMovement.flatMap(m->movementRepository.save(m));
+  }*/
+
 }

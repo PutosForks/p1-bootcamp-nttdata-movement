@@ -2,5 +2,7 @@ package com.nttdata.bootcamp.movement.Movement.utils;
 
 public enum ConstantBenefit {
   ASSETS,
-  PASSIVES
+  PASSIVES,
+  WALLET,
+  P2P
 }

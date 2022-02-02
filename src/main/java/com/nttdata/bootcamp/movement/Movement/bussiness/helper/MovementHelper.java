@@ -7,7 +7,6 @@ import com.nttdata.bootcamp.movement.Movement.model.dto.ProductDto;
 import com.nttdata.bootcamp.movement.Movement.utils.ConstantBenefit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
@@ -30,6 +29,12 @@ public class MovementHelper {
       if(benefitDto.getProductType().equals(ConstantBenefit.ASSETS.name())){
         objMovement = availableAssets(movement, benefitDto);
       }
+      if(benefitDto.getProductType().equals(ConstantBenefit.WALLET.name())){
+        objMovement = availableWallet(movement, benefitDto);
+      }
+      /*if(benefitDto.getProductType().equals(ConstantBenefit.P2P.name())){
+        objMovement = availableAssets(movement, benefitDto);
+      }*/
     }
     return objMovement;
   }
@@ -53,14 +58,14 @@ public class MovementHelper {
   }
 
   public Mono<Movement> availableAssets (Movement movement, BenefitDto benefitDto){
-    Mono<Movement> objMovement = Mono.empty();
+
     if(benefitDto.getRestCredit()!=null && (benefitDto.getRestCredit()+movement.getAmount()>=0) &&
             (benefitDto.getRestCredit()+ movement.getAmount()<= benefitDto.getTotalCredit())){
-      objMovement = Mono.just(movement);
       benefitDto.setRestCredit(benefitDto.getRestCredit()+ movement.getAmount());
       webClientHelper.updateBenefit(benefitDto).subscribe();
+      return Mono.just(movement);
     }
-    return objMovement;
+    return Mono.empty();
   }
 
   public Mono<MovementProductDto> createMovementProductDto(ProductDto productDto, List<Movement> objMovement){
@@ -78,4 +83,9 @@ public class MovementHelper {
 
   }
 
+  public Mono<Movement> availableWallet (Movement movement, BenefitDto benefitDto){
+
+    return Mono.empty();
+  }
+  
 }

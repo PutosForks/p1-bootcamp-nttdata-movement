@@ -32,6 +32,12 @@ public class Movement {
     private String benefitId;
     @Field(name = "created_at")
     private LocalDate createdAt;
+    @Field(name = "payment_method")
+    private String paymentMethod;
+    @Field(name = "transaction_type")
+    private String transactionType;
+    @Field(name = "total_boot_coin")
+    private Float totalBootCoin;
     private String status;
 
 }

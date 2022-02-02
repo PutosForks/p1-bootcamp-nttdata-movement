@@ -78,4 +78,13 @@ public class MovementController {
             .contentType(MediaType.APPLICATION_JSON)
             .body(movementService.findByProductId(id, commission)));
   }
+
+  //Create
+  @PostMapping("/sale-bootcoin")
+  public Mono<ResponseEntity<Mono<Movement>>> saleBootCoin(@RequestBody Movement movement){
+    log.info("create sale Bootcoin>>>>>");
+    return Mono.just(ResponseEntity.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(movementService.create(movement)));
+  }
 }

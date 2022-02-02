@@ -29,4 +29,14 @@ public class WebClientConfig {
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .build();
   }
+
+  @Bean
+  public WebClient webClientCustomer() {
+
+    return WebClient.builder()
+            .baseUrl("http://localhost:9000/api/v1/customer")
+            .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+            .build();
+  }
 }
